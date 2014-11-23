@@ -1,17 +1,3 @@
----
-title: "ReadME"
-author: "Chendur Anand"
-date: "Sunday, November 23, 2014"
-output: html_document
----
-
-The second column of the features file was converted to "character" data type. All the mean and standard deviation features are subsetted using pattern. The variable (Activity) in y_Train and y_Test are converted to factors. Then these factor levels are substituted with the 'Activity' names and then column bound to the respective 'X' data sets.
-  The variable from the subject data set is converted to a factor variable and added to the train and test sets respectively. Then the train and test sets are row bound. The subsetted features data set is used to subset the mean and standard deviation variables from the combined data set.
-  The column names are added to the data set and the data set is ordered based on activity and subject. The tidy data set is a table of activities with the subjects as variables. Then the column means will be the Subject means and the row means will the activity means.
-  This wide data set is then written to a file named 'Tidy_Data.txt' as a comma seperated data set.
-
-```{r}
-```{r}
 #Read the files
 xTrain <- read.table("~/Misc/Course_Era/Data_Science_Specialization/3_Getting_and_Cleaning_data/R/Assignment/UCI HAR Dataset/train/X_train.txt", quote="")
 yTrain <- read.table("~/Misc/Course_Era/Data_Science_Specialization/3_Getting_and_Cleaning_data/R/Assignment/UCI HAR Dataset/train/y_train.txt", quote="")
@@ -40,7 +26,6 @@ names(Train)[562] <- "Activity"
 names(Test)[562] <- "Activity"
 Train$Subject <- as.factor(as.character(subject_train[,1]))
 Test$Subject <- as.factor(as.character(subject_test[,1]))
-
 
 #Step 1: Merge Training and Test dataset
 data <- rbind(Train, Test)
@@ -75,5 +60,3 @@ tidyData[is.num] <- lapply(tidyData[is.num], round, 2)
 
 #Write to a file
 write.table(tidyData, file = "Tidy_Data.txt", sep = ",", row.names = FALSE)
-```
-```
